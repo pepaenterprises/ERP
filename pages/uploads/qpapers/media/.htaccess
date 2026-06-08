@@ -1,0 +1,4 @@
+Options -ExecCGI
+<FilesMatch "\.(php|phtml|pl|py)$">
+  Deny from all
+</FilesMatch>
