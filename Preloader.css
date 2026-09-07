@@ -1,0 +1,96 @@
+
+.preloader-wrapper.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.content {
+  width: 50vmin;
+  height: 50vmin;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.4);
+  animation: spin-all calc(var(--sp) * 2) linear 0s infinite;
+}
+
+.circle {
+  --in: 80%;
+  --ar: var(--orange-main);
+  --dt: var(--yellow-glow);
+  /* Softer shadow for white background */
+  --shadow: drop-shadow(0vmin 0vmin 1vmin rgba(255, 152, 0, 0.2));
+  --cross: linear-gradient(0deg, #fff0 calc(50% - 2px), rgba(0,0,0,0.1) calc(50% - 1px) calc(50% + 1px), #fff0 calc(50% + 2px)), 
+           linear-gradient(90deg, #fff0 calc(50% - 2px), rgba(0,0,0,0.1) calc(50% - 1px) calc(50% + 1px), #fff0 calc(50% + 2px));
+  border: 6vmin solid var(--ar);
+  width: var(--in);
+  height: var(--in);
+  border-radius: 100%;
+  position: absolute;
+  box-sizing: border-box;
+  border-top-color: #fff0;
+  border-left-color: #fff0;
+  top: 15vmin;
+  right: -10vmin;
+  animation: spin-bot var(--sp) ease 0s infinite;
+  background-image: var(--cross), radial-gradient(var(--dt) 5.5vmin, #fff0 calc(5.5vmin + 1px));
+  background-repeat: no-repeat;
+  background-size: 3vmin 1vmin, 1vmin 3vmin, 100% 100%;
+  background-position: center center;
+  filter: var(--shadow);
+}
+
+/* Children remain same but with lighter filters */
+.circle:nth-child(2) { --in: 60%; top: -2vmin; animation: spin-top var(--sp) ease 0s infinite; transform: rotate(-45deg); background-image: var(--cross), radial-gradient(var(--dt) 1.25vmin, #fff0 calc(1.25vmin + 1px)); right: -4vmin; filter: hue-rotate(5deg) var(--shadow); background-size: 1.4vmin 1vmin, 1vmin 1.4vmin, 100% 100%; }
+.circle:nth-child(3) { --in: 100%; top: -5vmin; left: -13vmin; transform: rotate(175deg); animation: spin-left var(--sp) ease calc(var(--sp) / 4) infinite; background-image: var(--cross), radial-gradient(var(--dt) 9vmin, #fff0 calc(9vmin + 1px)); filter: hue-rotate(10deg) var(--shadow); background-size: 5vmin 1vmin, 1vmin 5vmin, 100% 100%; }
+.circle:nth-child(4) { --in: 60%; top: 35vmin; left: -6vmin; transform: rotate(-280deg); animation: spin-last var(--sp) ease calc(calc(calc(var(--sp) / 4) + var(--sp)) * -1) infinite; background-image: var(--cross), radial-gradient(var(--dt) 2.5vmin, #fff0 calc(2.5vmin + 1px)); filter: hue-rotate(15deg) var(--shadow); background-size: 2vmin 1vmin, 1vmin 2vmin, 100% 100%; }
+
+/* Keyframes */
+@keyframes spin-all { 0% { transform: rotate(0deg) scale(0.4); } 100% { transform: rotate(360deg) scale(0.4); } }
+@keyframes spin-top { 0% { transform: rotate(-45deg); } 100% { transform: rotate(315deg); } }
+@keyframes spin-bot { 0%, 35% { transform: rotate(0deg); } 80%, 100% { transform: rotate(-360deg); } }
+@keyframes spin-left { 0%, 35% { transform: rotate(175deg); } 80%, 100% { transform: rotate(535deg); } }
+@keyframes spin-last { 0%, 10% { transform: rotate(-280deg); } 90%, 100% { transform: rotate(-640deg); } }
+
+/* Typing Text */
+.typing-container {
+  margin-top: -10px;
+}
+
+:root {
+  --sp: 2.5s;
+  /* Shifted to a slightly warmer 'Pearlescent' gray to make yellow pop better */
+  --bg-white: radial-gradient(circle, #ffffff 0%, #d1d5db 100%); 
+  --orange-main: #ff9800;
+  --yellow-glow: #ffea34;
+  --text-dark: #1e293b; 
+}
+
+.preloader-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-white);
+  transition: opacity 0.5s ease-in-out;
+}
+
+.typing-text {
+  color: #484343;
+  font-family: 'Courier New', monospace;
+  font-size: 1.6rem; /* Slightly larger for readability */
+  font-weight: 900;   /* Ultra-bold so yellow has more surface area */
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid var(--orange-main);
+  display: inline-block;
+  width: 0;
+  animation: typing 2s steps(10, end) infinite, blink 0.5s step-end infinite;
+}
+
+@keyframes typing { 0% { width: 0 } 50% { width: 100% } 100% { width: 0 } }
+@keyframes blink { from, to { border-color: transparent } 50% { border-color: var(--orange-main) } }

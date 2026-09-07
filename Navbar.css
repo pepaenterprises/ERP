@@ -1,0 +1,251 @@
+:root {
+  --brand-yellow: #FEE064;
+  --text-dark: #111827;
+  --text-muted: #6b7280;
+  --pill-bg: #f3f4f6;
+}
+
+/* Wrapper */
+.nav-wrapper {
+  position: fixed;
+  top: 2px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  padding: 0 16px;
+}
+
+/* Floating Navbar */
+.floating-nav {
+  width: 100%;
+  max-width: 1150px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px 0 12px;
+}
+
+/* BRAND */
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.logo-symbol {
+  height: 26px;
+  transition: transform 2s ease;
+}
+
+.slow-spin {
+  transform: rotate(360deg);
+}
+
+.brand-name {
+  font-weight: 800;
+  font-size:  1.65rem;
+  letter-spacing: -1px;
+  color: #FEE064; /* Brand Yellow */
+  margin-bottom: 8px;
+  
+  /* Reduced Black Outline: 
+     Using 0.5px instead of 1px makes the border look more professional
+     and removes the heavy shadow at the bottom. */
+  text-shadow: 
+    
+    
+     0.5px  0.5px 0 #000;
+  
+  transition: text-shadow 0.3s ease; /* Adds a smooth feel */
+}
+.brand-name:hover{
+  color: #f2db7f;
+}
+@media (max-width: 700px) {
+.floating-nav {
+  height: 60px;
+  display: flex;
+  padding: 0 18px 0 12px;
+  background: #f3f3dff8 ;
+  box-shadow: 0 10px 40px rgba(27, 27, 27, 0.179);
+  border-radius: 999px;
+}
+.nav-wrapper{
+    top: 18px;
+}
+
+}
+@media (min-width: 700px) {
+  .brand-name {
+    font-size: 2rem; /* REDUCED desktop size */
+
+  }
+
+  .logo-symbol {
+    height: 28px; /* optional: scale logo proportionally */
+    margin-top: 2px;
+  }
+
+  .nav-links a {
+    font-size: 2 rem;
+  }
+}
+
+
+/* Blinking dot */
+.brand-dot {
+  margin-left: 1px;
+  animation: dotBlink 2.5s infinite ease-in-out;
+}
+
+@keyframes dotBlink {
+  0% {
+    color: var(--brand-yellow);
+    opacity: 1;
+  }
+  50% {
+    color: var(--text-dark);
+    opacity: 0.4;
+  }
+  100% {
+    color: var(--brand-yellow);
+    opacity: 1;
+  }
+}
+
+/* CENTER LINKS */
+.nav-links {
+  display: flex;
+  border-radius: 999px;
+  background: #d6d2d276 ;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.207);
+  padding: 6px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.2 rem;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 600px;
+  transition: 0.2s ease;
+}
+
+.nav-links a:hover {
+  background: #f3f4f68b;
+  color: var(--text-dark);
+  color: rgb(0, 0, 0)
+}
+
+/* CTA */
+.cta-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background:#f3f4f6a5;
+   color: #2e2b2b;
+  text-decoration: none;
+  padding: 8px 8px 8px 12px;
+  border-radius: 999px;
+  font-size: 0.8 rem;
+  font-weight: 600;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.181);
+}
+
+.cta-pill:hover{
+    background: #ffffff46;
+    color: #000000;
+   
+}
+
+.arrow {
+  background: #c2c0a94b;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+/* MENU TOGGLE (HIDDEN BY DEFAULT – DESKTOP) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: #f3f4f6;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 18px;
+  height: 2px;
+  background: #111;
+  transition: all 0.35s ease;
+}
+
+/* Hamburger → X */
+.menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+  position: absolute;
+  top: 86px;
+  left: 16px;
+  right: 16px;
+  background: rgba(250, 248, 232, 0.981);
+  border-radius: 24px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+}
+
+.mobile-menu a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 500;
+  padding: 14px;
+  border-radius: 14px;
+}
+.mobile-menu a:hover{
+  box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+}
+
+.mobile-call-btn {
+  background: #f6f4d1de;
+  font-weight: 700;
+  text-align: center;
+box-shadow: 0 30px 60px rgba(0, 0, 0, 0.249);
+}
+
+/* RESPONSIVE */
+@media (max-width: 700px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+}
